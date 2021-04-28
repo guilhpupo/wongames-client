@@ -9,44 +9,48 @@ export const Wrapper = styled.menu`
     position: relative;
   `}
 `
+
+export const LogoWrapper = styled.div`
+  ${media.lessThan('medium')`
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  `}
+`
+
+export const IconWrapper = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+  `}
+`
+
 export const MenuGroup = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-grow: 1;
     justify-content: flex-end;
     align-items: center;
-
     > div {
       margin-left: ${theme.spacings.xsmall};
     }
   `}
 `
-export const LogoWrapper = styled.div`
-  ${media.lessThan('medium')`
-  position:absolute;
-  left:50%;
-  transform: translateX(-50%);`}
-`
 
-export const IconWrapper = styled.div`
-  ${({ theme }) => css`
-    color: ${theme.colors.white};
-    height: 2.4rem;
-    width: 2.4rem;
-    cursor: pointer;
-  `}
-`
 export const MenuNav = styled.div`
   ${({ theme }) => css`
     ${media.greaterThan('medium')`
-      margin-left: ${theme.spacings.small};
-  `}
+			margin-left: ${theme.spacings.small};
+		`}
   `}
 `
+
 export const MenuLink = styled.a`
   ${({ theme }) => css`
-    color: ${theme.colors.white};
     position: relative;
+    color: ${theme.colors.white};
     font-size: ${theme.font.sizes.medium};
     margin: 0.3rem ${theme.spacings.small} 0;
     text-decoration: none;
@@ -73,6 +77,7 @@ export const MenuLink = styled.a`
     }
   `}
 `
+
 type MenuFullProps = {
   isOpen: boolean
 }
@@ -83,7 +88,8 @@ export const MenuFull = styled.nav<MenuFullProps>`
     flex-direction: column;
     justify-content: space-between;
     background: ${theme.colors.white};
-    position: absolute;
+    position: fixed;
+    z-index: ${theme.layers.menu};
     top: 0;
     bottom: 0;
     left: 0;
@@ -102,7 +108,6 @@ export const MenuFull = styled.nav<MenuFullProps>`
       width: 2.4rem;
       height: 2.4rem;
     }
-
     ${MenuNav} {
       display: flex;
       align-items: center;
@@ -118,7 +123,6 @@ export const MenuFull = styled.nav<MenuFullProps>`
       transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
       transition: transform 0.3s ease-in-out;
     }
-
     ${RegisterBox} {
       transform: ${isOpen ? 'translateY(0)' : 'translateY(3rem)'};
       transition: transform 0.3s ease-in-out;
